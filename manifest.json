@@ -1,0 +1,53 @@
+{
+  "name": "Wellness Timer",
+  "short_name": "Wellness Timer",
+  "description": "A Progressive Web App for wellness breaks and productivity",
+  "start_url": "/wellness-timer/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2563eb",
+  "orientation": "portrait-primary",
+  "scope": "/wellness-timer/",
+  "lang": "en",
+  "categories": ["health", "productivity", "lifestyle", "utilities"],
+  "icons": [
+    {
+      "src": "/wellness-timer/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/wellness-timer/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Start Pomodoro",
+      "short_name": "Pomodoro",
+      "description": "Start a 25-minute Pomodoro session",
+      "url": "/wellness-timer/?theme=pomodoro",
+      "icons": [
+        {
+          "src": "/wellness-timer/icon-192x192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Start 20-20-20",
+      "short_name": "20-20-20",
+      "description": "Start a 20-20-20 eye care session",
+      "url": "/wellness-timer/?theme=20-20-20",
+      "icons": [
+        {
+          "src": "/wellness-timer/icon-192x192.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ]
+}
