@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     statusBarStyle: "default",
     title: "Wellness Timer",
   },
-    generator: 'v0.dev'
+  generator: 'v0.dev'
 }
 
 export const viewport: Viewport = {
@@ -25,6 +25,34 @@ export const viewport: Viewport = {
     { media: "(prefers-color-scheme: light)", color: "white" },
     { media: "(prefers-color-scheme: dark)", color: "#1a1a1a" },
   ],
+}
+
+// Service Worker Registration Component
+function ServiceWorkerRegistration() {
+  return (
+    <script
+      dangerouslySetInnerHTML={{
+        __html: `
+          if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+              navigator.serviceWorker.register('${basePath}/sw.js')
+                .then(function(registration) {
+                  console.log('SW registered: ', registration);
+                  
+                  // Request notification permission
+                  if ('Notification' in window && Notification.permission === 'default') {
+                    Notification.requestPermission();
+                  }
+                })
+                .catch(function(registrationError) {
+                  console.log('SW registration failed: ', registrationError);
+                });
+            });
+          }
+        `,
+      }}
+    />
+  );
 }
 
 export default function RootLayout({
@@ -41,6 +69,7 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="apple-mobile-web-app-title" content="Wellness Timer" />
         <meta name="mobile-web-app-capable" content="yes" />
+        <ServiceWorkerRegistration />
       </head>
       <body className={inter.className}>{children}</body>
     </html>

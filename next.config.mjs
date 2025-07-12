@@ -1,9 +1,11 @@
+import withSerwist from "@serwist/next";
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',
+  output: "export",
   trailingSlash: true,
   skipTrailingSlashRedirect: true,
-  distDir: 'out',
+  distDir: "out",
   eslint: {
     ignoreDuringBuilds: true,
   },
@@ -11,10 +13,16 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   images: {
-    unoptimized: true
+    unoptimized: true,
   },
-  assetPrefix: process.env.NODE_ENV === 'production' ? '/wellness-timer' : '',
-  basePath: process.env.NODE_ENV === 'production' ? '/wellness-timer' : '',
-}
+  assetPrefix: "/wellness-timer",
+  basePath: "/wellness-timer",
+};
 
-export default nextConfig
+export default withSerwist({
+  swSrc: "app/sw.ts",
+  swDest: "public/sw.js",
+  cacheOnNavigation: true,
+  reloadOnOnline: true,
+  disable: false,
+})(nextConfig);
